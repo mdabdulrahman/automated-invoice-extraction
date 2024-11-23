@@ -10,7 +10,7 @@ function Tabs() {
   const normalStyle = " py-4 w-1/3 border  ";
 
   return (
-    <div className="w-2/4 mx-auto">
+    <div className="w-2/4 text-sm mx-auto">
       <div className="flex justify-between font-medium  text-center text-gray-500 ">
         <button
           onClick={() => navigate("/")}
