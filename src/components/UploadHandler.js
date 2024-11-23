@@ -38,7 +38,7 @@ function UploadHandler() {
     console.log(`Uploading files...`);
 
     setIsLoading(true);
-    setInfo("Please Wait ....");
+    setInfo("Please Wait .... It may take upto 50 seconds");
 
     //appending files to formdata
     Array.from(fileRef.current.files).forEach((file) => {
