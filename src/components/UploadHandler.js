@@ -94,7 +94,7 @@ function UploadHandler() {
       });
   };
   return (
-    <div className="m-3 w-1/2">
+    <div className="m-3 w-1/2 text-sm">
       <div className=" flex mb-2 ">
         <input
           type="file"
