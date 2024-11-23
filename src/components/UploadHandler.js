@@ -2,33 +2,31 @@ import React, { useRef, useState } from "react";
 import { addInvoice } from "../slices/invoiceSlice";
 import { useDispatch } from "react-redux";
 import axios from "axios";
+
+//use case : upload files , format data as json and add invoice to redux store
+
 function UploadHandler() {
   const dispatch = useDispatch();
   const fileRef = useRef(null);
   const supportedFiles =
     ".pdf, .txt , .html , .csv , .xls , .xlsx , .jpg , .jpeg , .png , .webp";
   const [isLoading, setIsLoading] = useState(false);
-  const [info, setInfo] = useState("Maximum 3 files!");
+  const [info, setInfo] = useState("Upload Files 👆 here to extract");
 
   let handleFileChange = (e) => {
+    //to display selected file names
     let noOfFiles = e.target.files.length;
-    if (noOfFiles > 3) {
-      setInfo(
-        "Maximum of 3 files can be extracted at a time! Please select up to 3 files only."
-      );
-      fileRef.current.value = "";
-    } else {
-      let fileNames = "";
+    let fileNames = "";
+    Array.from(e.target.files).forEach((file, i) => {
+      fileNames += file.name;
+      if (i != noOfFiles - 1) fileNames += " , ";
+    });
 
-      Array.from(e.target.files).forEach((file, i) => {
-        fileNames += file.name;
-        if (i != noOfFiles - 1) fileNames += " , ";
-      });
-      setInfo("Selected Files : " + fileNames);
-    }
+    setInfo("Selected Files : " + fileNames);
   };
 
   let upload = () => {
+    //no file is selected
     if (fileRef.current.files.length == 0) {
       setInfo("Please Select a file to extract!");
       return;
@@ -42,6 +40,7 @@ function UploadHandler() {
     setIsLoading(true);
     setInfo("Please Wait ....");
 
+    //appending files to formdata
     Array.from(fileRef.current.files).forEach((file) => {
       formData.append("files", file);
     });
@@ -54,6 +53,7 @@ function UploadHandler() {
         },
       })
       .then((response) => {
+        //if response is exceeded max_token
         if (response.data.candidates[0].finishReason === "MAX_TOKENS") {
           setInfo(
             "Error: The file you uploaded caused the response to exceed the maximum token limit. If this occurred while uploading an Excel file, it may contain too much data—try splitting it into smaller files and re-uploading."
@@ -67,7 +67,7 @@ function UploadHandler() {
         let invoicesData = response.data.candidates[0].content.parts[0].text;
 
         invoicesData = invoicesData.replace(/```json|```/g, "");
-        console.log(invoicesData);
+        //console.log(invoicesData);
         try {
           invoicesData = JSON.parse(invoicesData);
 
@@ -76,7 +76,9 @@ function UploadHandler() {
             dispatch(addInvoice(invoice));
           });
 
-          setInfo("Extraction Done!");
+          setInfo(
+            "Extraction is ✅Done! You can ✏️edit each value by clicking on value"
+          );
           console.log("Extraction Done!");
         } catch (error) {
           console.log(error);

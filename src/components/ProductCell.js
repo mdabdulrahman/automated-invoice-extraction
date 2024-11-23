@@ -1,7 +1,12 @@
 import React from "react";
 import { updateInvoiceProduct } from "../slices/invoiceSlice";
 import { useDispatch } from "react-redux";
+
+//in product table to make each entry editable this component is used
+//input tag changes style to highlight missing field
 function ProductCell(props) {
+  //props format : { pos->invoice index in the invoices array , product_pos->product index inside the invoice's products array,key->property name,product->product object}
+
   const dispatch = useDispatch();
   let updateInvoiceProductValue = (pos, product_pos, key, value) => {
     dispatch(updateInvoiceProduct({ pos, product_pos, key, value }));

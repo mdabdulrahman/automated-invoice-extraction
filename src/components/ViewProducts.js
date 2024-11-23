@@ -3,9 +3,14 @@ import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import Table from "./Table";
 import ProductCell from "./ProductCell";
+
+//this component is used to display a specific invoice's products
+
 function ViewProducts() {
   const invoices = useSelector((state) => state.invoices);
   const location = useLocation();
+
+  //?id=1
   let pos = parseInt(location.search.split("=")[1]);
   const cols = [
     "Sno",

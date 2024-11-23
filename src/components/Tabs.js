@@ -2,6 +2,8 @@ import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 function Tabs() {
+  //tab button changes style according to the pathname
+
   const location = useLocation();
   const navigate = useNavigate();
   const activeStyle = " py-4 w-1/3 text-white bg-blue-600  active";

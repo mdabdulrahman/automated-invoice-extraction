@@ -1,7 +1,11 @@
 import React from "react";
 import { updateInvoice } from "../slices/invoiceSlice";
 import { useDispatch } from "react-redux";
+
+//in invoice and customer table to make each entry editable this component is used
+//input tag changes style to highlight missing field
 function InvoiceCell(props) {
+  //props format : { pos->invoice index in the invoices array , key->property name,row->invoice object}
   const dispatch = useDispatch();
   let updateInvoiceValue = (pos, key, value) => {
     dispatch(updateInvoice({ pos, key, value }));

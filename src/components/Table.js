@@ -1,5 +1,5 @@
 import React from "react";
-
+//to create table using cols and rows array passed in props
 function Table(props) {
   return (
     <div className="w-[95%]  mx-auto relative overflow-x-auto shadow-md sm:rounded-lg">
