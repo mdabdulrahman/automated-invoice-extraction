@@ -87,6 +87,8 @@ function UploadHandler() {
         setIsLoading(false);
       })
       .catch((error) => {
+        setInfo(error.message);
+        setIsLoading(false);
         console.error("Error:", error.message);
       });
   };
