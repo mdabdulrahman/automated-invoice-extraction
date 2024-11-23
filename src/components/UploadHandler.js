@@ -33,6 +33,7 @@ function UploadHandler() {
     }
 
     const formData = new FormData();
+
     const url = "https://geminiapi-express.onrender.com/upload";
 
     console.log(`Uploading files...`);
