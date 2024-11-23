@@ -2,7 +2,7 @@ import React from "react";
 //to create table using cols and rows array passed in props
 function Table(props) {
   return (
-    <div className="w-[95%]  mx-auto relative overflow-x-auto shadow-md sm:rounded-lg">
+    <div className="w-[95%]  mx-auto relative overflow-x-auto text-sm shadow-md ">
       <table className="w-full  text-left rtl:text-right  ">
         <thead className=" text-white uppercase bg-black ">
           <tr>
