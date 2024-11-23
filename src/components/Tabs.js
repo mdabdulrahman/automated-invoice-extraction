@@ -6,8 +6,8 @@ function Tabs() {
 
   const location = useLocation();
   const navigate = useNavigate();
-  const activeStyle = " py-4 w-1/3 text-white bg-blue-600  active";
-  const normalStyle = " py-4 w-1/3 border  ";
+  const activeStyle = " py-3 w-1/3 text-white bg-blue-600  active";
+  const normalStyle = " py-3 w-1/3 border  ";
 
   return (
     <div className="w-2/4 text-sm mx-auto">

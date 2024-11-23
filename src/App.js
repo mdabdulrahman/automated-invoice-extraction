@@ -8,6 +8,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Customers from "./tabs/Customers";
 import Tabs from "./components/Tabs";
 import ViewProducts from "./components/ViewProducts";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
             <Route path="/customers" element={<Customers />} />
           </Routes>
         </Router>
+        <Footer />
       </div>
     </Provider>
   );
