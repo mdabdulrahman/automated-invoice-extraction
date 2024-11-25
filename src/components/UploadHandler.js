@@ -34,7 +34,7 @@ function UploadHandler() {
 
     const formData = new FormData();
 
-    const url = "https://geminiapi-express.onrender.com/upload";
+    const url = "https://gemini-express.onrender.com/upload";
 
     console.log(`Uploading files...`);
 
@@ -63,6 +63,8 @@ function UploadHandler() {
           setIsLoading(false);
           return;
         }
+        
+
 
         //processing response to valid json
         let invoicesData = response.data.candidates[0].content.parts[0].text;
@@ -76,10 +78,17 @@ function UploadHandler() {
           invoicesData.invoices.forEach((invoice) => {
             dispatch(addInvoice(invoice));
           });
-
+         
+          let files_count = invoicesData.files_count;
+          console.log(files_count+" "+fileRef.current.files.length)
+          if( files_count < fileRef.current.files.length){
+            setInfo(`Only ${files_count} files were processed! Gemini was unable to process all files sometimes, so it is recommended to upload files one by one.`);
+          }
+            else{
           setInfo(
             "Extraction is ✅Done! You can ✏️edit each value by clicking on value"
           );
+        }
           console.log("Extraction Done!");
         } catch (error) {
           console.log(error);
