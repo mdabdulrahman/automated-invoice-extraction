@@ -34,7 +34,7 @@ function UploadHandler() {
 
     const formData = new FormData();
 
-    const url = "https://gemini-express.onrender.com/upload";
+    const url = "https://geminiapi-express.onrender.com/upload";
 
     console.log(`Uploading files...`);
 
