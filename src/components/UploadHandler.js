@@ -39,7 +39,7 @@ function UploadHandler() {
     console.log(`Uploading files...`);
 
     setIsLoading(true);
-    setInfo("Please Wait .... It may take upto 50 seconds");
+    setInfo("Please wait... If this is your first extraction, it may take up to 2 minutes because the backend is hosted on Render's free tier, which may cause some delay.");
 
     //appending files to formdata
     Array.from(fileRef.current.files).forEach((file) => {
